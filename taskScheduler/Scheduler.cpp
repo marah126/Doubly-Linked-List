@@ -2,7 +2,7 @@
 #include "UniqueID.hpp"
 #include <iostream>
 #include <thread>
-#include <unordered_map>
+#include <unordered_set>
 
 Scheduler::Scheduler() : m_head(nullptr) {}
 
@@ -115,8 +115,15 @@ void Scheduler::deleteTask(int id) {
 	Task* current = getTask(id);
 	if (!current) return;
 	if (m_head->getID() == id) {
-		m_head = m_head->m_next;
-		m_head->m_next->m_previous = nullptr;
+		if (m_head->m_next) {
+			m_head = m_head->m_next;
+			m_head->m_next->m_previous = nullptr;
+		}
+		else {
+			m_head = nullptr;
+		}
+		
+		
 	}
 	else {
 		if (current->m_next) {
@@ -128,8 +135,8 @@ void Scheduler::deleteTask(int id) {
 		}
 		current = nullptr;
 		delete current;
-		cout << "The task with ID : " << id << " is deleted." << endl;
 	}
+	cout << "The task with ID : " << id << " is deleted." << endl;
 }
 
 void Scheduler::executeTask() {
@@ -231,6 +238,9 @@ void Scheduler::reschedual() {
 				priority--;
 				current->setPriority(priority);
 				cout << "The PRIORITY of the Task with ID = " << current->getID() << "has updated to : " << priority << endl;
+				deleteTask(current->getID());
+				addTask(current->getName(), current->getPriority(), current->getExecutionTime());
+
 			}
 			else {
 				cout << "The PRIORITY of the Task with ID = " << current->getID() << "CANNOT BE REDUCED" << endl;
@@ -265,14 +275,14 @@ void Scheduler::cycleDetection(Task* head) {
 	}
 	Task* current = head;
 	Task* previous = nullptr;
-	unordered_map<Task*,int> visited;
+	unordered_set<Task*> visited;
 	while (current) {
 		if (visited.find(current) != visited.end()) {
-			cout << "Cycle detected between task ID:"<< current->getID() << "and task ID"<< previous->getID() << endl;
+			cout << "Cycle detected between task ID: "<< current->getID() << " and task ID: "<< previous->getID() << endl;
 			break;
 		}
 		else {
-			visited.insert({ current, current->m_next->getID() });
+			visited.insert(current);
 		}
 		previous = current;
 		current = current->m_next;
