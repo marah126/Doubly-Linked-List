@@ -16,7 +16,7 @@ This project is a simple simulation of processes and scheduling them using the d
   - 
     **members**:
     
-    	static int id: represent the ID to be generated and incremented.
+    static int id: represent the ID to be generated and incremented.
     
     **methods**:
     
