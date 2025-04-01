@@ -32,22 +32,22 @@ void Task::setName(string name) {
 }
 
 
-int Task::getID() {
+const int Task::getID() const {
 	return m_id;
 }
 
-int Task::getPriority() {
+const int Task::getPriority() const {
 	return m_priority;
 }
 
-int Task::getExecutionTime() {
+const int Task::getExecutionTime() const {
 	return m_execution_time;
 }
 
-string Task::getName() {
+const string Task::getName() const {
 	return m_name ;
 }
 
-chrono::time_point<std::chrono::system_clock> Task::getStartTime() {
+const chrono::time_point<std::chrono::system_clock> Task::getStartTime() const{
 	return m_startTime;
 }

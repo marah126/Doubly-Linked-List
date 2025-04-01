@@ -39,6 +39,7 @@ bool Scheduler::checkID(int id)
 	}
 	return true;
 }
+// given list with ID 1 -> 2 -> 3 , remove 2 and try to get it, what the above function will return ?
 
 bool Scheduler::validateTaskInfo(string name, int priority, int exectime) {
 	if (name.empty()) {

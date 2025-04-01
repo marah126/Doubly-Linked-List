@@ -1,2 +1,21 @@
+# Visual Studio build files
+*.obj
+*.pdb
+*.ilk
+*.ipch
+*.ncb
+*.sdf
+*.tlog
+*.idb
+*.VC.db
+
+# Output directories
+Debug/
+Release/
+x64/
+x86/
+build/
 .vs/
-.vs/
+
+ Ignore auto-generated files
+*.vcxproj.user
