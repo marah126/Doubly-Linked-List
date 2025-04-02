@@ -14,8 +14,9 @@ private:
 	chrono::time_point<std::chrono::system_clock> m_startTime;
 
 public:
-	Task* m_next;
-	Task* m_previous;
+	Task* m_next; // why public?
+	Task* m_previous; // why public ?
+	// NOTE: since these vars are public the user can access them.
 
 	Task(string name, int priority, int execTime);
 	//Task();
@@ -23,10 +24,10 @@ public:
 	void setExecutionTime(int time);
 	void setName(string name);
 	//void setStartTime(chrono::time_point<std::chrono::system_clock> start);
-	int getID();
-	int getPriority();
-	int getExecutionTime();
-	string getName();
-	chrono::time_point<std::chrono::system_clock> getStartTime();
-
+	const int getID() const;
+	const int getPriority() const;
+	const int getExecutionTime() const;
+	const string getName() const;
+	const chrono::time_point<std::chrono::system_clock> getStartTime() const;
+	// Add const return and const function (cannot edit to class variables)??
 };

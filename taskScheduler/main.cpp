@@ -7,6 +7,7 @@ int main() {
 	Scheduler scheduler;
 	string taskName;
 	int priority, execTime = 0;
+	// where the exit?
 	while (true) {
 		cout << "================================" << endl;
 		cout << "1. Add a new task." << endl;
@@ -17,6 +18,8 @@ int main() {
 		cout << "6. Sort By Execution Time" << endl;
 		cout << "7. Reschedual Tasks" << endl;
 		cout << "8. Cycle Detection" << endl;
+		cout << "9. Exit" << endl;
+
 		cout << "Enter your choice;" << endl;
 		int choice;
 		cin >> choice;
@@ -139,6 +142,11 @@ int main() {
 				break;
 			case 8:
 				scheduler.cycleDetection(scheduler.simulateCycle());
+				break;
+			case 9:
+				exit(0);
+			default:
+				cout << "Invalid choise :) \nPlease choise from 1 - 9 only!" << endl;
 				break;
 			}
 
